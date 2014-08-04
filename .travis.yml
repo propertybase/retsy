@@ -16,3 +16,6 @@ matrix:
   fast_finish: true
 script:
   - bundle exec rspec
+addons:
+  code_climate:
+    repo_token: f2de698e1077758563b8f651f1c5aee9938816f589e6f8a0b63e320676d4bd69
