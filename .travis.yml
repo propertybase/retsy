@@ -1,0 +1,18 @@
+language: ruby
+cache: bundler
+bundler_args: --without documentation production
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.2
+  - jruby-19mode
+  - rbx
+  - ruby-head
+  - jruby-head
+matrix:
+  allow_failures:
+    - rvm:
+      - ruby-head
+      - jruby-head
+script:
+  - bundle exec rspec
