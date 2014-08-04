@@ -1,6 +1,8 @@
 # Retsy
 
-TODO: Write a gem description
+**CAUTION:** very pre release, still under heavy development.
+
+Retsy is a pure ruby client to fetch real estate listings over [RETS](http://en.wikipedia.org/wiki/Real_Estate_Transaction_Standard)
 
 ## Installation
 
