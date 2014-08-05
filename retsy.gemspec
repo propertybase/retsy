@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday-digestauth"
   spec.add_dependency "faraday_middleware"
   spec.add_dependency "faraday-conductivity"
+  spec.add_dependency "faraday-cookie_jar"
   spec.add_dependency "multi_xml"
 
   spec.add_development_dependency "rspec", '~> 3.0'
