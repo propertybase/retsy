@@ -12,7 +12,6 @@ module Retsy
       def http
         @http ||= Faraday.new(url: base_url) do |builder|
           builder.response :xml,  :content_type => /\bxml$/
-          builder.response :json, :content_type => /\bjson$/
 
           builder.request :rets_request_id
           builder.request :user_agent, app: Retsy.to_s, version: Retsy::VERSION
