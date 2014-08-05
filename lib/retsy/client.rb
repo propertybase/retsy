@@ -20,7 +20,7 @@ module Retsy
 
       uri = URI.parse(login_url)
 
-      @base_url = "#{uri.scheme}//#{uri.host}"
+      @base_url = "#{uri.scheme}://#{uri.host}"
     end
 
     def login_path
