@@ -24,5 +24,12 @@ module Retsy
         end
       end
     end
+
+    describe "#base_url" do
+      subject { described_class.new(login_url: "http://propertybase.com/foo") }
+      it "builds base_url correctly" do
+        expect(subject.base_url).to eq("http://propertybase.com")
+      end
+    end
   end
 end

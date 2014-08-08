@@ -9,6 +9,7 @@ module Retsy
           :login_url,
           :username,
           :password,
+          :version
         ]
       end
     end

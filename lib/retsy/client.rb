@@ -1,9 +1,13 @@
 require "retsy/configurable"
 require "retsy/client/http"
+require "retsy/client/metadata"
+require "retsy/client/search"
 
 module Retsy
   class Client
     include Retsy::Client::Http
+    include Retsy::Client::Metadata
+    include Retsy::Client::Search
 
     attr_reader :login_url, :username, :password, :response_arguments
 
@@ -20,7 +24,7 @@ module Retsy
 
       uri = URI.parse(login_url)
 
-      @base_url = "#{uri.scheme}//#{uri.host}"
+      @base_url = "#{uri.scheme}://#{uri.host}"
     end
 
     def login_path
@@ -32,7 +36,7 @@ module Retsy
     def response_arguments
       return @response_arguments if @response_arguments
 
-      rets_resonse = http.get(login_url).body["RETS"]["RETS_RESPONSE"]
+      rets_resonse = request(login_url).body["RETS"]["RETS_RESPONSE"]
       @response_arguments = Retsy::Tools::ResponseArgumentsParser.parse(
         rets_resonse
       )
