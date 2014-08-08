@@ -24,7 +24,7 @@ module Retsy
         end
       end
 
-      def request path, params = {}
+      def request(path, params = {})
         http.get(path, params.merge(:"rets-version" => "rets/#{@version}"))
       end
     end

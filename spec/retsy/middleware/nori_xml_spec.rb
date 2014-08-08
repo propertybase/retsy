@@ -4,7 +4,7 @@ require "retsy/middleware/nori_xml"
 module Retsy
   module Middleware
     describe NoriXml, type: :middleware do
-      context  "valid XML" do
+      context "valid XML" do
         let(:xml) { "<tag>content</tag>" }
         let(:expected_result) { { "tag" => "content" } }
 
