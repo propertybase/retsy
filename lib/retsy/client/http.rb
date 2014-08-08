@@ -4,6 +4,7 @@ require "faraday/digestauth"
 require "faraday/conductivity"
 require "faraday-cookie_jar"
 require "retsy/middleware/rets_request_id"
+require "retsy/middleware/fuzzy_xml"
 require "retsy/middleware/nori_xml"
 
 
@@ -18,6 +19,7 @@ module Retsy
           builder.request :request_headers, accept: "application/xml"
 
           builder.response :nori_xml, content_type: /\bxml$/
+          builder.response :fuzzy_xml
 
           builder.use :cookie_jar
           builder.adapter(Faraday.default_adapter)

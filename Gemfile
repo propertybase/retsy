@@ -7,7 +7,7 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 
 group :test, :development do
   gem "guard"
-  gem 'guard-rspec'
+  gem "guard-rspec"
 
   gem "rb-inotify", require: false
   gem "rb-fsevent", require: false
