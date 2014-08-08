@@ -13,6 +13,7 @@ module Retsy
             Faraday::Request::DigestAuth,
             Faraday::Conductivity::RequestHeaders,
             Retsy::Middleware::NoriXml,
+            Retsy::Middleware::FuzzyXml,
             Faraday::CookieJar,
             Faraday::Adapter::NetHttp,
           ]
