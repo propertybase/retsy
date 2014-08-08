@@ -8,11 +8,13 @@ module Retsy
         let(:connection) { mocked_client.http }
         let(:expected_handlers) do
           [
-            FaradayMiddleware::ParseXml,
-            Retsy::Client::RetsRequestId,
+            Retsy::Middleware::RetsRequestId,
             Faraday::Conductivity::UserAgent,
             Faraday::Request::DigestAuth,
+            Faraday::Conductivity::RequestHeaders,
+            Retsy::Middleware::NoriXml,
             Faraday::CookieJar,
+            Faraday::Adapter::NetHttp,
           ]
         end
 
@@ -21,9 +23,7 @@ module Retsy
         end
 
         it "has all necessary handlers" do
-          expected_handlers.each do |handler|
-            expect(connection.builder.handlers).to include(handler)
-          end
+          expect(connection.builder.handlers).to eq(expected_handlers)
         end
       end
     end

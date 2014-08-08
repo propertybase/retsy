@@ -1,5 +1,5 @@
 module Retsy
-  class Client
+  module Middleware
     class RetsRequestId < Faraday::Middleware
 
       def initialize(app)
@@ -16,5 +16,5 @@ module Retsy
 end
 
 Faraday::Request.register_middleware(
-  rets_request_id: Retsy::Client::RetsRequestId
+  rets_request_id: Retsy::Middleware::RetsRequestId
 )

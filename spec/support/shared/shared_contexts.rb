@@ -1,12 +1,17 @@
 shared_context "mocked client" do
   let(:mocked_client) do
-    client = Retsy::Client.new({login_url: "http://rets.com/login"})
+    client = Retsy::Client.new(
+      login_url: "http://rets.com/login",
+      version: rets_version,
+    )
     client.instance_variable_set(
       "@response_arguments",
       mocked_response_arguments,
     )
     client
   end
+
+  let(:rets_version) { "1.8" }
 
   let(:mocked_response_arguments) do
     {
