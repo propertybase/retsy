@@ -12,7 +12,7 @@ module Retsy
         let(:wrapped_metadata) do
           {
             "METADATA" => {
-              "METADATA_TABLE" => expected_metadata
+              "METADATA-TABLE" => expected_metadata
             }
           }
         end
