@@ -25,7 +25,7 @@ module Retsy
         let(:content_type) { "text/plain" }
         let(:expected_content_type) { "application/xml" }
 
-        it "leaves content for correct response" do
+      it "leaves content for correct response" do
           expect(process(body, content_type).headers[:content_type]).
             to eq(expected_content_type)
         end

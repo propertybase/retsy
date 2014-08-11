@@ -1,6 +1,7 @@
 require "retsy/configurable"
 require "retsy/client/http"
 require "retsy/client/metadata"
+require "retsy/tools/rets_response_parser"
 require "retsy/client/search"
 
 module Retsy
@@ -36,7 +37,7 @@ module Retsy
     def response_arguments
       return @response_arguments if @response_arguments
 
-      rets_resonse = request(login_url).body["RETS"]["RETS_RESPONSE"]
+      rets_resonse = request(login_url).body["RETS-RESPONSE"]
       @response_arguments = Retsy::Tools::ResponseArgumentsParser.parse(
         rets_resonse
       )

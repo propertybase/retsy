@@ -11,10 +11,8 @@ module Retsy
         let(:mocked_response) { OpenStruct.new(body: wrapped_metadata) }
         let(:wrapped_metadata) do
           {
-            "RETS" => {
-              "METADATA" => {
-                "METADATA_TABLE" => expected_metadata
-              }
+            "METADATA" => {
+              "METADATA_TABLE" => expected_metadata
             }
           }
         end

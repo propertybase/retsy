@@ -27,7 +27,13 @@ module Retsy
       end
 
       def request(path, params = {})
-        http.get(path, params.merge(:"rets-version" => "rets/#{@version}"))
+        http.get(
+          path,
+          params.merge(
+            :"rets-version" => "rets/#{@version}",
+            querytype: "DMQL2",
+          )
+        )
       end
     end
   end
