@@ -5,7 +5,7 @@ module Retsy
         body = request(
           response_arguments[:search],
           params.merge(
-            query_type: "DMQL2",
+            querytype: "DMQL2",
           )
         ).body
         begin

@@ -3,12 +3,14 @@ require "retsy/client/http"
 require "retsy/client/metadata"
 require "retsy/tools/rets_response_parser"
 require "retsy/client/search"
+require "retsy/client/count"
 
 module Retsy
   class Client
     include Retsy::Client::Http
     include Retsy::Client::Metadata
     include Retsy::Client::Search
+    include Retsy::Client::Count
 
     attr_reader :login_url, :username, :password, :response_arguments
 
