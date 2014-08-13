@@ -5,7 +5,7 @@ require "faraday/conductivity"
 require "faraday-cookie_jar"
 require "retsy/middleware/rets_request_id"
 require "retsy/middleware/fuzzy_xml"
-require "retsy/middleware/nori_xml"
+require "retsy/middleware/sax_xml"
 
 
 module Retsy

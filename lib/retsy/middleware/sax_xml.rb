@@ -4,7 +4,7 @@ require "retsy/tools/xml_sanitizer"
 
 module Retsy
   module Middleware
-    class NoriXml < FaradayMiddleware::ResponseMiddleware
+    class SaxXml < FaradayMiddleware::ResponseMiddleware
       define_parser do |body|
         Saxerator.parser(XmlSanitizer.sanitize(body)) do |config|
           config.put_attributes_in_hash!
@@ -15,5 +15,5 @@ module Retsy
 end
 
 Faraday::Response.register_middleware(
-  nori_xml: Retsy::Middleware::NoriXml
+  nori_xml: Retsy::Middleware::SaxXml
 )

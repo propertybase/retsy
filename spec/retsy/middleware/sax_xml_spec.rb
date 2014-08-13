@@ -1,9 +1,9 @@
 require "spec_helper"
-require "retsy/middleware/nori_xml"
+require "retsy/middleware/sax_xml"
 
 module Retsy
   module Middleware
-    describe NoriXml, type: :middleware do
+    describe SaxXml, type: :middleware do
       context "valid XML" do
         let(:xml) { "<root><tag>content</tag></root>" }
         let(:expected_result) { { "tag" => "content" } }

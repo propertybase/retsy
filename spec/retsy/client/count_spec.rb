@@ -16,7 +16,7 @@ module Retsy
 
         let(:mocked_response) do
           OpenStruct.new(
-            body: Retsy::Middleware::NoriXml.parser.call(xml_response)
+            body: Retsy::Middleware::SaxXml.parser.call(xml_response)
           )
         end
 

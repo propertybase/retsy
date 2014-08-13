@@ -12,7 +12,7 @@ module Retsy
             Faraday::Conductivity::UserAgent,
             Faraday::Request::DigestAuth,
             Faraday::Conductivity::RequestHeaders,
-            Retsy::Middleware::NoriXml,
+            Retsy::Middleware::SaxXml,
             Retsy::Middleware::FuzzyXml,
             Faraday::CookieJar,
             Faraday::Adapter::NetHttp,
