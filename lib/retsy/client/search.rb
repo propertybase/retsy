@@ -12,7 +12,7 @@ module Retsy
           Retsy::Tools::RetsResponseParser.validate!(body)
           result = body["REData"]
           wrapped = result.is_a?(Hash) ? [result] : result
-          wrapped.map{|l| l.fetch("REProperties").fetch(params[:class])}
+          wrapped.map { |l| l.fetch("REProperties").fetch(params[:class]) }
         rescue Retsy::NoRecordsFoundError
           []
         end

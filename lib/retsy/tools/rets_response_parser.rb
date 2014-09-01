@@ -5,7 +5,7 @@ module Retsy
     module RetsResponseParser
       extend self
 
-      def validate! input
+      def validate!(input)
         return_code = input["ReplyCode"]
         return if return_code == "0"
 

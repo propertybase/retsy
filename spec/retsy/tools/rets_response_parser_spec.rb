@@ -15,7 +15,7 @@ module Retsy
           end
 
           it "raises correct expection" do
-            expect{subject.validate!(rets_response)}.
+            expect { subject.validate!(rets_response) }.
               to raise_error(Retsy::NoRecordsFoundError)
           end
         end
