@@ -25,7 +25,6 @@ module Retsy
           {
             search_type: "Property",
             class: "RES",
-            query_type: "DMQL2",
             query: "(ListPrice=50000-)",
             count: 2,
           }

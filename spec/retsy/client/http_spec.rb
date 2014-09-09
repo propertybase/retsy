@@ -27,6 +27,30 @@ module Retsy
           expect(connection.builder.handlers).to eq(expected_handlers)
         end
       end
+
+      describe "#request" do
+        include_context "mocked client"
+        subject { mocked_client }
+
+        let(:path) { "/search" }
+        let(:version) { "1.8" }
+        let(:expected_parameters) do
+          {
+            :"rets-version" => "rets/#{version}",
+            querytype: "DMQL2",
+            format: "COMPACT-DECODED"
+          }
+        end
+
+        before(:each) do
+          subject.instance_variable_set("@version", version)
+        end
+
+        it "merges correct parameters" do
+          expect(subject.http).to receive(:get).with(path, expected_parameters)
+          subject.request(path, {})
+        end
+      end
     end
   end
 end

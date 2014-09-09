@@ -4,15 +4,18 @@ module Retsy
       def search(params)
         body = request(
           response_arguments[:search],
-          params.merge(
-            querytype: "DMQL2",
-          )
+          params,
         ).body
         begin
           Retsy::Tools::RetsResponseParser.validate!(body)
-          result = body["REData"]
-          wrapped = result.is_a?(Hash) ? [result] : result
-          wrapped.map { |l| l.fetch("REProperties").fetch(params[:class]) }
+          delimiter = body["DELIMITER"]["value"].to_i.chr
+          columns = body["COLUMNS"].split(delimiter)
+          Array(body["DATA"]).map do |data|
+            Hash[
+              columns.zip(data.split(delimiter)).
+                reject { |k, _| k.nil? || k == "" }
+            ]
+          end
         rescue Retsy::NoRecordsFoundError
           []
         end

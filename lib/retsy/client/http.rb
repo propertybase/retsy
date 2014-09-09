@@ -31,6 +31,8 @@ module Retsy
           path,
           params.merge(
             :"rets-version" => "rets/#{@version}",
+            querytype: "DMQL2",
+            format: "COMPACT-DECODED",
           )
         )
       end
