@@ -25,21 +25,36 @@ module Retsy
           }
         end
 
-        let(:mocked_response) { OpenStruct.new(body: wrapped_metadata) }
+        let(:mocked_response) { OpenStruct.new(body: body) }
 
         context "3 results" do
-          let(:expected_results) { ["listing", "after", "listing"] }
+          let(:expected_results) do
+            [
+              {
+                "ListingID" => "313009",
+                "ListPrice" => "1600",
+              },
+              {
+                "ListingID" => "313010",
+                "ListPrice" => "1700",
+              },
+              {
+                "ListingID" => "313011",
+                "ListPrice" => "1800",
+              },
+            ]
+          end
 
-          let(:wrapped_metadata) do
+          let(:body) do
             {
               "ReplyCode" => "0",
-              "REData" => expected_results.map do |l|
-                {
-                  "REProperties" => {
-                    params[:class] => l,
-                  }
-                }
-              end
+              "DELIMITER" => { "value"=>"09" } ,
+              "COLUMNS" => "\tListingID\tListPrice\t",
+              "DATA" => [
+                "\t313009\t1600\t",
+                "\t313010\t1700\t",
+                "\t313011\t1800\t"
+              ],
             }
           end
 
@@ -47,16 +62,21 @@ module Retsy
         end
 
         context "1 result" do
-          let(:expected_results) { ["listing"] }
+          let(:expected_results) do
+            [
+              {
+                "ListingID" => "313009",
+                "ListPrice" => "1600",
+              }
+            ]
+          end
 
-          let(:wrapped_metadata) do
+          let(:body) do
             {
               "ReplyCode" => "0",
-              "REData" => {
-                "REProperties" => {
-                  params[:class] => expected_results.first,
-                }
-              }
+              "DELIMITER" => { "value"=>"09" },
+              "COLUMNS" => "\tListingID\tListPrice\t",
+              "DATA" => "\t313009\t1600\t",
             }
           end
 
@@ -66,7 +86,7 @@ module Retsy
         context "no results" do
           let(:expected_results) { [] }
 
-          let(:wrapped_metadata) do
+          let(:body) do
             {
               "ReplyCode" => "20201",
               "ReplyText" => "No Records Found.",

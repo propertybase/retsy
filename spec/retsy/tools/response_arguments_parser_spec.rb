@@ -10,8 +10,11 @@ module Retsy
         "\r\nBroker=0,0\r\nMetadataVersion=01.01.00000" \
         "\r\nMetadataTimestamp=2014-03-27T13:06:52" \
         "\r\nMinMetadataTimestamp=2014-03-27T13:06:52" \
-        "\r\nTimeoutSeconds=1800\r\nGetObject=/rets/GetObject" \
-        "\r\nLogin=/rets/Login\r\nLogout=/rets/Logout\r\nSearch=/rets/Search" \
+        "\r\nTimeoutSeconds=1800" \
+        "\r\nGetObject=/rets/GetObject" \
+        "\r\nLogin=/rets/Login" \
+        "\r\nLogout=/rets/Logout" \
+        "\r\nSearch=/rets/Search" \
         "\r\nGetMetadata=/rets/GetMetadata\r\n"
       end
 
