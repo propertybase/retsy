@@ -5,22 +5,13 @@ module Retsy
     describe Count do
       describe "#count" do
         include_context "mocked client"
-        subject { mocked_client }
-
-        let(:xml_response) do
-          "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" \
-          "\r\n<RETS ReplyCode=\"0\" ReplyText=\"Operation Successful\">" \
-          "\r\n<COUNT Records=\"#{expected_count}\" />" \
-          "\r\n</RETS>"
-        end
 
         let(:mocked_response) do
           OpenStruct.new(
-            body: Retsy::Middleware::SaxXml.parser.call(xml_response)
+            body: body
           )
         end
 
-        let(:expected_count) { 2611 }
         let(:params) do
           {
             search_type: "Property",
@@ -30,12 +21,63 @@ module Retsy
           }
         end
 
-        it "sends the correct messages" do
-          expect(subject).
+        before(:each) do
+          allow(subject).
             to receive(:request).
             with(mocked_response_arguments[:search], params).
             and_return(mocked_response)
-          expect(subject.count(params)).to eq(expected_count)
+        end
+
+        subject { mocked_client }
+
+        context "records available" do
+          let(:body) do
+            {
+              "COUNT" => { "Records"=>"#{expected_count}" },
+              "ReplyCode"=>"0",
+              "ReplyText"=>"Operation Successful"
+            }
+          end
+
+          let(:expected_count) { 2611 }
+
+          it "sends the correct messages" do
+            expect(subject.count(params)).to eq(expected_count)
+          end
+        end
+
+        context "no records available" do
+          let(:body) do
+            {
+              "ReplyCode"=>"20201",
+              "ReplyText"=>"No Records Found."
+            }
+          end
+
+          let(:expected_count) { 0 }
+
+          it "sends the correct messages" do
+            expect(subject.count(params)).to eq(expected_count)
+          end
+        end
+
+        context "invalid query" do
+          let(:body) do
+            {
+              "RETS-STATUS"=>{
+                "ReplyCode"=>"20201",
+                "ReplyText"=>"No matching records were found"
+              },
+              "ReplyCode"=>"0",
+              "ReplyText"=>"Operation Successful"
+            }
+          end
+
+          let(:expected_count) { 0 }
+
+          it "sends the correct messages" do
+            expect(subject.count(params)).to eq(expected_count)
+          end
         end
       end
     end

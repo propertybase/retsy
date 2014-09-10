@@ -8,8 +8,13 @@ module Retsy
             count: 2,
           )
         ).body
-        Retsy::Tools::RetsResponseParser.validate!(body)
-        body["COUNT"].attributes["Records"].to_i
+        begin
+          Retsy::Tools::RetsResponseParser.validate!(body)
+          count_wrapper = body["COUNT"]
+          count_wrapper ? count_wrapper["Records"].to_i : 0
+        rescue Retsy::NoRecordsFoundError
+          0
+        end
       end
     end
   end
