@@ -3,7 +3,7 @@ module Retsy
     module Metadata
       def metadata(params)
         body = request(response_arguments[:get_metadata], params).body
-        body["METADATA"][params[:type]]
+        (body["METADATA"] || body)[params[:type]]
       end
     end
   end

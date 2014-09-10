@@ -80,7 +80,7 @@ module Retsy
             }
           end
 
-            include_examples "check result"
+          include_examples "check result"
         end
 
         context "no results" do
