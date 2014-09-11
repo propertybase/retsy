@@ -18,7 +18,7 @@ module Retsy
           builder.request :digest, username, password
           builder.request :request_headers, accept: "application/xml"
 
-          builder.response :nori_xml, content_type: /\bxml$/
+          builder.response :sax_xml, content_type: /\bxml$/
           builder.response :fuzzy_xml
 
           builder.use :cookie_jar

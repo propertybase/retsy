@@ -4,7 +4,7 @@ module Retsy
       def call(env)
         @app.call(env).on_complete do |res|
           content_type = res.response_headers[:content_type]
-          unless content_type =~ /\bxml$/
+          unless content_type =~ /\bxml$/ || content_type =~ /^multipart/
             if res.body =~ /^</
               res.response_headers[:content_type] = "application/xml"
             end

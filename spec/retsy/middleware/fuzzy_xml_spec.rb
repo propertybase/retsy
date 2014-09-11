@@ -30,6 +30,16 @@ module Retsy
             to eq(expected_content_type)
         end
       end
+
+      context "XML content with multipart content type" do
+        let(:content_type) { "multipart/parallel" }
+        let(:expected_content_type) { "multipart/parallel" }
+
+        it "leaves content for correct response" do
+          expect(process(body, content_type).headers[:content_type]).
+            to eq(expected_content_type)
+        end
+      end
     end
   end
 end

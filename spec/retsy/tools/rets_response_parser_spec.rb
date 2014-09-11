@@ -1,3 +1,4 @@
+require "spec_helper"
 require "retsy/tools/rets_response_parser"
 
 module Retsy
