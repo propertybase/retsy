@@ -15,5 +15,5 @@ module Retsy
 end
 
 Faraday::Response.register_middleware(
-  nori_xml: Retsy::Middleware::SaxXml
+  sax_xml: Retsy::Middleware::SaxXml
 )
